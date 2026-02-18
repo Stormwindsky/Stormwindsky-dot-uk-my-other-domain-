@@ -1,12 +1,165 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="refresh" content="0; url=https://gamejolt.com/@Stormwindsky" />
-    <title>Redirection...</title>
-  </head>
-  <body>
-    <p>If you are not redirected, <a href="https://gamejolt.com/@Stormwindsky">click here</a>.</p>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stormwindsky.uk | Royal Satire</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #d4af37;
+            font-family: 'Georgia', serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        #royal-container {
+            text-align: center;
+            padding: 40px;
+            border: 5px double #d4af37;
+            background: linear-gradient(135deg, #4a0404 0%, #800000 100%);
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            max-width: 700px;
+            border-radius: 15px;
+            margin: 20px;
+        }
+
+        .joke-text {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            font-style: italic;
+            color: #ffffff;
+            margin: 30px 0;
+            min-height: 120px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .btn-royal {
+            background-color: #d4af37;
+            color: #4a0404;
+            border: none;
+            padding: 12px 25px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 0 #8c6d12;
+        }
+
+        .btn-royal:hover { background-color: #f1c40f; transform: translateY(-2px); }
+        .btn-royal:active { transform: translateY(2px); box-shadow: none; }
+
+        /* Section Crédits et Langues */
+        #credits-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            font-size: 0.9rem;
+        }
+
+        .lang-btns {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .btn-lang {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            padding: 3px 8px;
+            cursor: pointer;
+            font-size: 0.75rem;
+        }
+
+        .btn-lang:hover { background: #d4af37; color: #4a0404; }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <audio id="royalAudio" loop>
+        <source src="https://raw.githubusercontent.com/Stormwindsky/Stormwindsky-Website/main/Files/musics/Boccerini_Op11_n%C2%B05_G275_Satz3_Minuett.ogg" type="audio/ogg">
+    </audio>
+
+    <div id="royal-container">
+        <div style="font-size: 3rem;">👑</div>
+        <h1>Stormwindsky Decree</h1>
+        
+        <div class="joke-text" id="joke-display">
+            "Gentlemen, a true Sir never spills his tea... even when the peasants are revolting about the price of gold-plated biscuits."
+        </div>
+
+        <div class="button-group">
+            <button class="btn-royal" onclick="changeJoke()">New Joke</button>
+            <a href="https://gamejolt.com/@Stormwindsky" class="btn-royal" target="_blank">GameJolt</a>
+            <a href="https://stormwindsky.com" class="btn-royal" target="_blank">Real Site</a>
+        </div>
+
+        <div id="credits-section">
+            <div id="credit-text">
+                Source code: CC0 1.0. Music: Luigi Boccherini (1743-1805), source Wikipedia (CC0 1.0).
+            </div>
+            
+            <div class="lang-btns">
+                <button class="btn-lang" onclick="setLang('en')">EN</button>
+                <button class="btn-lang" onclick="setLang('fr-fr')">FR (France)</button>
+                <button class="btn-lang" onclick="setLang('fr-ca')">FR (Canada)</button>
+                <button class="btn-lang" onclick="setLang('es-es')">ES (España)</button>
+                <button class="btn-lang" onclick="setLang('es-am')">ES (América)</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const audio = document.getElementById('royalAudio');
+        audio.volume = 0.5;
+
+        // Lancement de la musique au premier clic sur la page
+        document.body.addEventListener('click', function() {
+            audio.play();
+        }, { once: true });
+
+        const jokes = [
+            "Gentleman 1: 'Sir, the commoners have no bread!' \nSir: 'Then tell them to steep their tea with 24-carat gold leaves, it's remarkably filling.'",
+            "A Sir never drinks tea with his pinky down. It’s the only thing keeping the British Empire from tilting.",
+            "Why do Gentlemen prefer Earl Grey? Because 'Peasant Grey' was far too difficult to clean off the marble floors.",
+            "Sir, your tea is cold! - 'As cold as my inheritance tax? Impossible!'"
+        ];
+
+        const translations = {
+            'en': "Source code: CC0 1.0. Music: Luigi Boccherini (1743-1805), source Wikipedia (CC0 1.0).",
+            'fr-fr': "Code source : CC0 1.0. Musique : Luigi Boccherini (1743-1805), source Wikipédia (CC0 1.0).",
+            'fr-ca': "Le code source est sous licence CC0 1.0. La musique est de Luigi Boccherini (1743-1805), via Wikipédia (CC0 1.0).",
+            'es-es': "Código fuente: CC0 1.0. Música: Luigi Boccherini (1743-1805), fuente Wikipedia (CC0 1.0).",
+            'es-am': "El código fuente es CC0 1.0. Música por Luigi Boccherini (1743-1805), fuente de Wikipedia (CC0 1.0)."
+        };
+
+        function changeJoke() {
+            const display = document.getElementById('joke-display');
+            const randomIndex = Math.floor(Math.random() * jokes.length);
+            display.innerText = jokes[randomIndex];
+        }
+
+        function setLang(lang) {
+            document.getElementById('credit-text').innerText = translations[lang];
+        }
+    </script>
+</body>
 </html>
-
-
