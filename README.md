@@ -1,2 +1,4 @@
-# Stormwindsky-dot-uk-my-other-domain-
-test (4 now)
+# Stormwindsky.uk (my joke website)
+
+
+this is just a joke website i made lol
